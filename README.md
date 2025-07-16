@@ -25,6 +25,9 @@
 - [A Bathing Ape](https://www.bape.com)
 - [Stussy](https://www.stussy.com)
 
+### 運動用品
+- [Center-SP](https://www.center-sp.co.jp/ec/) - 日本運動用品店，專營拳擊、格鬥技、訓練器材
+
 ## 快速開始
 
 ### 1. 克隆專案

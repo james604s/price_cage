@@ -116,6 +116,20 @@ FIGHTING_GEAR_SITES = {
         }
     }
 }
+
+SPORTS_EQUIPMENT_SITES = {
+    "center_sp": {
+        "base_url": "https://www.center-sp.co.jp/ec/",
+        "categories": ["boxing", "martial_arts", "training"],
+        "selectors": {
+            "product_list": ".product-link",
+            "product_name": "h1, .product-name",
+            "product_price": ".price, .product-price"
+        },
+        "currency": "JPY",
+        "language": "ja"
+    }
+}
 ```
 
 ## Quick Start
@@ -131,7 +145,10 @@ curl http://localhost:8000/health
 python scripts/run_crawler.py --type all
 
 # Scrape specific sites
-python scripts/run_crawler.py --sites venum supreme
+python scripts/run_crawler.py --sites venum supreme center-sp
+
+# Scrape specific types
+python scripts/run_crawler.py --type center_sp
 
 # Use async mode for faster scraping
 python scripts/run_crawler.py --type all --async

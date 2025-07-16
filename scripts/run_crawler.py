@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.crawlers.fighting_gear_crawler import FightingGearCrawler
 from src.crawlers.streetwear_crawler import StreetwearCrawler
+from src.crawlers.center_sp_crawler import CenterSPCrawler
 from src.database.connection import init_database
 from src.storage.data_processor import DataProcessor
 from src.utils.logger import get_logger
@@ -28,7 +29,8 @@ class CrawlerManager:
         # Initialize crawlers
         self.crawlers = {
             'fighting_gear': FightingGearCrawler(),
-            'streetwear': StreetwearCrawler()
+            'streetwear': StreetwearCrawler(),
+            'center_sp': CenterSPCrawler()
         }
     
     def run_crawler(self, 
@@ -72,12 +74,15 @@ class CrawlerManager:
         """Run crawlers for specific sites"""
         fighting_gear_sites = ['venum', 'tatami', 'hayabusa']
         streetwear_sites = ['supreme', 'bape', 'stussy']
+        center_sp_sites = ['center-sp', 'center_sp', 'centersp']
         
         for site in sites:
             if site in fighting_gear_sites:
                 self.run_crawler('fighting_gear', [site], async_mode)
             elif site in streetwear_sites:
                 self.run_crawler('streetwear', [site], async_mode)
+            elif site in center_sp_sites:
+                self.run_crawler('center_sp', [], async_mode)
             else:
                 self.logger.warning(f"Unsupported site: {site}")
 
@@ -87,7 +92,7 @@ def main():
     parser = argparse.ArgumentParser(description='Price Cage Crawler System')
     parser.add_argument(
         '--type', 
-        choices=['fighting_gear', 'streetwear', 'all'],
+        choices=['fighting_gear', 'streetwear', 'center_sp', 'all'],
         default='all',
         help='Crawler type'
     )
